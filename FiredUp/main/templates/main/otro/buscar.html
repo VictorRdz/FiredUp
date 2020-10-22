@@ -1,0 +1,56 @@
+{% extends "main/main.html" %}
+{% block title %}Registrarse{% endblock %}
+{% block content %}
+
+    <div class="grid-x align-center align-middle">
+        <div class="cell large-9 small-11 white-container align-center" style="padding:1em;">
+            <h4>Buscar empleo</h4>
+            <form class="grid-x grid-margin-x">
+                <div class="cell large-6">
+                    <input type="text" placeholder="Título del puesto, empresa o palabras clave">
+                </div>
+                <div class="cell large-4">
+                    <input type="text" placeholder="Ubicación">
+                </div>
+                <div class="cell large-2">
+                   <input type="submit" class="button expanded" value="Buscar">
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+
+    <div class="grid-x align-center">
+        <div class="cell large-9 small-11 white-container" style="padding:0">
+            <h4 style="margin:0.5em;">Resultados de la búsqueda:</h4>
+            <!-- Postulación -->
+
+            {% for vacante in vacante_list %}
+                <a href="/vacante/{{vacante.id}}">
+                    <div class="vacante">
+                        <h5 class="vacante-titulo" style="padding-left:-5px;">{{vacante.puesto}}</h5>
+                        <div class="vacante-info">
+                            <div class="grid-x grid-margin-x">
+                                <div class="cell large-4 vacante-empresa">
+                                    <h6>{{vacante.empresa.nombre}}</h6>
+                                </div>
+                                <div class="cell large-4">
+                                    <h6>{{vacante.ubicacion.nombre}}</h6>
+                                </div>
+                                <div class="cell large-4 vacante-remuneracion">
+                                    <h6>${{vacante.remuneracion.minimo}} - ${{vacante.remuneracion.maximo}} {{vacante.remuneracion.frecuencia}}</h6>
+                                </div>
+                            </div>
+                            <p class="vacante-descripcion">{{vacante.descripcion}}</p>
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <div class="vacante-null">
+                    <h4>No se encontró ninguna vacante.</h4>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br><br><br>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "main/main.html" %}
+{% block title %}Registrarse{% endblock %}
+{% block content %}
+
+    <div class="grid-x align-center">
+        <div class="cell large-9 medium-10 small-11 white-container">
+            
+            <div class="hide-for-large">
+                <h1>Buscar empleo</h1>
+                <br>
+            </div>
+            <div class="grid-x grid-margin-x align-center align-middle">
+                <div class="cell large-4 small-10">
+                    <div id="map" class="border"></div>
+                    <br>
+                </div>
+                <form class="cell large-7">
+                    <h2 class="show-for-large">Buscar empleo</h2>
+                    <label>Título del puesto, empresa o palabras clave
+                    <input type="text" placeholder="ej: desarrollador, negocios, etc.">
+                    </label>
+                    <label>Ubicación
+                    <input type="text">
+                    </label>
+                    <div class="grid-x grid-margin-x">
+                        <div class="cell">
+                            <br>
+                            <a href="/buscar" class="expanded button">
+                                <i class="fi-magnifying-glass"></i>&nbsp Buscar
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    
+{% endblock %}

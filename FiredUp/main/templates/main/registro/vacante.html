@@ -1,0 +1,302 @@
+{% extends "main/main.html" %}
+{% block title %}Registrarse{% endblock %}
+{% block content %}
+
+    <div class="grid-x align-center align-middle">
+        <div class="cell large-10 small-11 white-container grid-x align-center">
+            <form class="cell large-11" action="create" method="POST">
+            {% csrf_token %}
+                <h2>Crear vacante</h2>
+                <hr class="hr-blue">
+
+                <div>
+                    <h4 class="medium-title">Detalles del puesto:</h4>
+                    <div class="grid-x grid-margin-x align-bottom">
+
+                        <div class="cell large-6">
+                            <div class="grid-x grid-margin-x align-bottom">
+                                <div class="cell medium-12">
+                                    <label>Título del puesto:</label>
+                                    <input type="text" name="titulo">
+                                    <label>Descripción:</label>
+                                    <textarea name="descripcion" class="experiencia-textarea" maxlength="400" placeholder="Breve descripción del puesto. (Máximo 400 caracteres)"></textarea>
+                                </div>
+
+                                <div class="cell medium-6">
+                                    <label>Área de puesto:</label>
+                                    <select name="area-puesto">
+                                        {% for departamento in departamento_list %}
+                                            <option value="{{ departamento.id }}">
+                                            {{ departamento.departamento }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="cell medium-6">
+                                    <label>Tipo de puesto:</label>
+                                    <select name="tipo-puesto">
+                                        {% for tipo in tipo_list %}
+                                            <option value="{{ tipo.id }}">
+                                            {{ tipo.tipo }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                {% for remuneracion in remuneracion_formset %}
+                                <div class="cell small-6">
+                                    <label>Remuneración {{remuneracion.minimo.label}}:</label>
+                                    {{remuneracion.minimo}}
+                                </div>
+                                <div class="cell small-6">
+                                    <label>Remuneración {{remuneracion.maximo.label}}:</label>
+                                    {{remuneracion.maximo}}
+                                </div>
+                                <div class="cell">
+                                    <label>{{remuneracion.frecuencia.label}}:</label>
+                                    {{remuneracion.frecuencia}}
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="cell large-6">
+                            <hr class="hide-for-large">
+                            <h4 class="medium-title hide-for-large">Ubicación:</h4>
+                            <div class="grid-x grid-margin-x align-center">
+                                <div class="cell large-7">
+                                    <div id="map" class="border"></div>
+                                </div>
+                                <div class="cell">
+                                    <br>
+                                    <label>Dirección</label>
+                                    <input type="text" placeholder="Los Angeles, CA, USA" id="vacante-autocomplete"/>
+                                    <input type="hidden" id="maps-name" name="name" />
+                                    <input type="hidden" id="maps-address" name="address" />
+                                    <input type="hidden" id="maps-lat" name="lat" />
+                                    <input type="hidden" id="maps-lng" name="lng" />
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+                <hr class="hr-blue">
+                
+                <div>
+                    <h4 class="medium-title">Frecuencia:</h4>
+                    <div class="grid-x grid-margin-x align-bottom">
+                        <div class="cell small-6 large-3">
+                            <label>Lunes:</label>
+                            <input type="text" placeholder="Hora de entrada" class="time-input" name="lunes-in">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <input type="text" placeholder="Hora de salida" class="time-input" name="lunes-out">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <label>Martes:</label>
+                            <input type="text" placeholder="Hora de entrada" class="time-input" name="martes-in">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <input type="text" placeholder="Hora de salida" class="time-input" name="martes-out">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <label>Miércoles:</label>
+                            <input type="text" placeholder="Hora de entrada" class="time-input" name="miercoles-in">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <input type="text" placeholder="Hora de salida" class="time-input" name="miercoles-out">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <label>Jueves:</label>
+                            <input type="text" placeholder="Hora de entrada" class="time-input" name="jueves-in">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <input type="text" placeholder="Hora de salida" class="time-input" name="jueves-out">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <label>Viernes:</label>
+                            <input type="text" placeholder="Hora de entrada" class="time-input" name="viernes-in">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <input type="text" placeholder="Hora de salida" class="time-input" name="viernes-out">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <label>Sábado:</label>
+                            <input type="text" placeholder="Hora de entrada" class="time-input" name="sabado-in">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <input type="text" placeholder="Hora de salida" class="time-input" name="sabado-out">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <label>Domingo:</label>
+                            <input type="text" placeholder="Hora de entrada" class="time-input" name="domingo-in">
+                        </div>
+                        <div class="cell small-6 large-3">
+                            <input type="text" placeholder="Hora de salida" class="time-input" name="domingo-out">
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr-blue">
+
+                {{ funcion_formset.management_form }}
+                <h4 class="medium-title">Funciones:</h4>
+                {% for form in funcion_formset %}
+                <div class="funcion-container">
+                    <label>{{form.funcion.label}}</label>
+                    {{form.funcion}}
+                </div>
+                {% endfor %}
+                <input id="add-funcion-vacante" type="button" class="button expanded" value="+">
+                <br>
+                <hr class="hr-blue">
+
+                <h4 class="medium-title">Prestaciones:</h4>
+                {% for form in prestacion_formset %}
+                <div class="prestacion-container">
+                    <label>{{form.prestacion.label}}</label>
+                    {{form.prestacion}}
+                </div>
+                {% endfor %}
+                <input id="add-prestacion-vacante" type="button" class="button expanded" value="+">
+                <br>
+                <hr class="hr-blue">
+
+                <div>
+                    <h4 class="medium-title">Requisitos personales:</h4>
+                    <div class="grid-x grid-margin-x align-bottom">
+                        <div class="cell small-4">
+                            <label>Edad requerida:</label>
+                            <select name="edad">
+                            {% for edad in edad_list %}
+                                <option value="{{edad.id}}">{{edad.edad}}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                        <div class="cell small-4">
+                            <label>Sexo:</label>
+                            <select name="sexo">
+                                <option value="0">Indistinto</option>
+                                <option value="1">Hombre</option>
+                                <option value="0">Mujer</option>
+                            </select>
+                        </div>
+                        <div class="cell small-4">
+                            <label>Experiencia mínima:</label>
+                            <select name="experiencia">
+                                <option value="0">Ninguna</option>
+                                <option value="1">1 año</option>
+                                <option value="2">2 años</option>
+                                <option value="3">3 años</option>
+                                <option value="5">5 años</option>
+                                <option value="10">10 años</option>
+                                <option value="15">15 años</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr-blue">
+
+                <h4 class="medium-title">Educación:</h4>
+                {% for form in educacion_formset %}
+                <div class="grid-x grid-margin-x align-bottom educacion-container">
+                    <div class="cell medium-4">
+                        <label>{{form.nivel.label}}</label>
+                        {{form.nivel}}
+                    </div>
+                    <div class="cell medium-5">
+                        <label>{{form.area.label}}</label>
+                        {{form.area}}
+                    </div>
+                    <div class="cell medium-3">
+                        <label>{{form.caracter.label}}</label>
+                        {{form.caracter}}
+                    </div>
+                </div>
+                {% endfor %}
+                <input id="add-educacion-vacante" type="button" class="button expanded" value="+">
+                <br>
+
+                
+                <h4 class="medium-title">Idiomas:</h4>
+                {% for form in idioma_formset %}
+                <div class="grid-x grid-margin-x align-bottom idioma-container">
+                    <div class="cell medium-6">
+                        <label>{{form.idioma.label}}</label>
+                        {{form.idioma}}
+                    </div>
+                    <div class="cell medium-3">
+                        <label>{{form.nivel.label}}</label>
+                        {{form.nivel}}
+                    </div>
+                    <div class="cell medium-3">
+                        <label>{{form.caracter.label}}</label>
+                        {{form.caracter}}
+                    </div>
+                </div>
+                {% endfor %}
+                <input id="add-idioma-vacante" type="button" class="button expanded" value="+">
+                <br>
+                <hr class="hr-blue">
+
+
+                
+                <h4 class="medium-title">Habilidades:</h4>
+                
+                {% for form in habilidad_formset %}
+                <div class="grid-x grid-margin-x habilidad-container" >
+                    <div class="cell medium-9">
+                        <label>{{form.habilidad.label}}</label>
+                        {{form.habilidad}}
+                    </div>
+                    <div class="cell medium-3">
+                        <label>{{form.caracter.label}}</label>
+                        {{form.caracter}}
+                    </div>
+                </div>
+                {% endfor %}
+                <input id="add-habilidad-vacante" type="button" class="button expanded" value="+" >
+                <hr class="hr-blue">
+                    
+                <h4 class="medium-title">Competencias:</h4>
+                {% for form in competencia_formset %}
+                <div class="grid-x grid-margin-x competencia-container" >
+                    <div class="cell medium-9">
+                        <label>{{form.competencia.label}}</label>
+                        {{form.competencia}}
+                    </div>
+                    <div class="cell medium-3">
+                        <label>{{form.caracter.label}}</label>
+                        {{form.caracter}}
+                    </div>
+                </div>
+                {% endfor %}
+                <input id="add-competencia-vacante" type="button" class="button expanded" value="+" >
+                <hr class="hr-blue">
+
+
+
+
+                <div>
+                    <h4 class="medium-title">Información adicional:</h4>
+                    <textarea name="informacion-adicional" maxlength="640" class="quien-soy-textarea" placeholder="Máximo 640 caracteres."></textarea>
+                </div>
+                <hr>
+
+                <div class="submit-button-big">
+                    <input type="submit" class="button large expanded" value="Crear vacante">
+                    <small >Al hacer clic en "Crear vacante" estás aceptando nuestros <a href="#">Términos y Condiciones</a>, así como nuestra <a href="#">Política de Privacidad.</a></small>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/jquery.timepicker.min.css' %}">
+    <script src="{% static 'main/js/vendor/datepair.min.js' %}"></script>
+    <script src="{% static 'main/js/vendor/jquery.timepicker.min.js' %}"></script>
+    <script src="{% static 'main/js/maps.js' %}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVFcwgdcm0b-rU3264mUfMrqn-9UFUDTE&libraries=places&callback=registroVacanteAutocomplete"
+        type="text/javascript"></script>
+    
+{% endblock %}

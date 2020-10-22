@@ -1,0 +1,75 @@
+{% extends "main/main.html" %}
+{% block title %}Registrarse{% endblock %}
+{% block content %}
+{% load static %}
+
+    <div class="grid-x align-center align-middle">
+        <div class="cell large-10 small-11 white-container grid-x align-center">
+            <div class="grid-x grid-margin-x align-center cell align-middle">
+                <div class="cell large-4">
+                    <img src="{% static 'main/images/company/1.png' %}" class="user-image">
+                    <br>
+                </div>
+
+                <div class="cell large-8">
+                    <h3 style="text-align: left !important;">{{ empresa.nombre }}
+                        {% if empresa.verificado %}
+                        <span>&nbsp;<i class="fi-checkbox verified"></i></span>
+                        {% endif %}
+                    </h3>
+                    <div class="user-descripcion">
+                        <h5><b>País: </b>{{ empresa.ubicacion }}</h5>
+                        <h5><b>Tamaño: </b>{{ empresa.tamaño }}</h5>
+                        <br>
+                        <h6><b>Contacto: </b>{{ empresa.contacto }}</h6>
+                        <h6><b>Sitio web: </b><a href="//{{empresa.sitio_web}}"target="_blank">
+                            {{ empresa.sitio_web }}</a></h6>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="cell large-11">
+                <hr>
+
+                <div class="justified">
+                    <h4>Información</h4>
+                    <p>{{ empresa.informacion }}</p>
+                </div>
+                <hr>
+
+                <div class="user-section">
+                    <h4>Vacantes disponibles:</h4>
+
+                    {% for vacante in vacante_list %}
+                    <div class="area-container user-vacante-color">
+                        <p><b>Puesto: </b>{{vacante.puesto}}</p>
+                        <p><b>Ubicación: </b>{{vacante.ubicacion.direccion}}</p>
+                        <p><b>Tipo: </b>{{vacante.tipo.tipo}}</p>
+                        <p><b>Área: </b><span class="area-tag">{{vacante.departamento.departamento}}</span></p>
+                        <p><b>Remuneración: </b>${{vacante.remuneracion.minimo}} - ${{vacante.remuneracion.maximo}} {{vacante.remuneracion.frecuencia}}</p>
+                        <hr>
+                        <a href="/vacante/{{vacante.id}}" class="button small expanded">Ir a la vacante</a>
+                    </div>
+                    {% empty %}
+                        <div class="vacante-null" style="display:none;">
+                            <h4>No hay vacantes disponibles.</h4>
+                        </div>
+                    {% endfor %}
+                    
+                    <hr>
+
+                    <div class="grid-x grid-margin-x" style="text-align:center;">
+                        <div class="cell medium-6">
+                            <small>Fecha de creación del perfil: {{ empresa.created_at }}</small>
+                        </div>
+                        <div class="cell medium-6">
+                            <small>Fecha de la última actualización: {{ empresa.updated_at }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

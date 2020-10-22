@@ -1,0 +1,41 @@
+{% extends "main/main.html" %}
+{% block title %}Lista de vacantes{% endblock %}
+{% block content %}
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container no-bottom">
+                <h4>Lista de vacantes (Página {{vacante_list.number}})</h5>
+
+                {% for vacante in vacante_list %}
+                <hr>
+                <div class="grid-x grid-margin-x align-middle">
+                    <div class="cell large-1 medium-2">
+                        <p><b>ID: </b>{{vacante.id}}</p>
+                    </div>
+                    <div class="cell large-8 medium-10 user-list-text">
+                        <p><b>Puesto: </b>{{vacante.puesto}}</p>
+                        <p><b>Información: </b>{{vacante.descripcion}}</p>
+                    </div>
+                    <div class="cell large-3">
+                        <br class="show-for-medium-only">
+                        <a href="/vacante/{{vacante.id}}" class="button expanded">Ver vacante</a>
+                    </div>
+                </div>
+                {% endfor %}
+                <hr>
+                <div class="grid-x grid-margin-x align-center">
+                    <div class="cell medium-4">
+                        {% if vacante_list.has_previous %}
+                            <a href="?pagina={{vacante_list.previous_page_number}}" class="button expanded">Página anterior</a>
+                        {% endif %}
+                    </div>
+                    <div class="cell medium-4">
+                        {% if vacante_list.has_next %}
+                            <a href="?pagina={{vacante_list.next_page_number}}" class="button expanded">Siguiente página</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

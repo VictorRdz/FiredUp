@@ -1,0 +1,40 @@
+{% extends "main/main.html" %}
+{% block title %}Iniciar sesión{% endblock %}
+{% block content %}
+
+    <div class="grid-x align-center">
+        <div class="cell large-5 medium-9 small-11 white-container" style="max-width:600px!important;">
+            <h3>Iniciar sesión</h3><br>
+            <div class="grid-x align-center">
+                <div class="cell large-9 medium-8">
+                    <form action="enter" method="POST">
+                        {% csrf_token %}
+                        <label>Nombre de usuario o correo electrónico:
+                        <input type="text" placeholder="yo@ejemplo.com" name="correo-electronico">
+                        </label>
+
+                        <label>Contraseña:
+                        <input type="password" placeholder="***************" name="contrasena">
+                        </label>
+
+                        <div class="grid-x">
+                            <div class="cell large-6 medium-6 small-6">
+                                <input type="checkbox"><small>&nbsp Recuérdame</small>
+                            </div>
+                            <div class="cell large-6 medium-6 small-6" style="text-align:right;">
+                                <a href="#"><small>Olvidé la contraseña</small></a>
+                            </div>
+                        </div>
+                        
+                        <br>
+                        <div style="text-align:center;">
+                            <input type="submit" class="button expanded large" value="Iniciar sesión">
+                            <small>¿No tienes cuenta? <a href="/signup">Regístrate aquí</a></small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,202 @@
+{% extends "main/main.html" %}
+{% block title %}Registrarse{% endblock %}
+{% block content %}
+
+    <div class="grid-x align-center align-middle">
+        <div class="cell large-10 small-11 white-container align-center grid-x">
+            <div class="cell large-9 small-11">
+                <h3>{{vacante.puesto}}</h3>
+                <hr>
+
+                {% if request.session.user_type == "Empresa" %}
+                <div style="text-align:center;">
+                    <div class="grid-x grid-margin-x" >
+                        <div class="cell medium-6">
+                            <a href="#" class="button expanded">Escoger a un candidato</a>
+                        </div>
+                        <div class="cell medium-6">
+                            <a href="delete" class="button alert expanded">Eliminar vacante</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                {% endif %}
+
+                <div class="grid-x grid-margin-x" style="text-align:center;">
+                    <div class="cell medium-6">
+                        <small>Fecha de creación de la vacante: {{vacante.created_at}}</small><br>
+                    </div>
+                    <div class="cell medium-6">
+                        <small>Fecha de la última actualización: {{vacante.updated_at}}</small>
+                    </div>
+                </div>
+                <hr>
+                <div class="grid-x grid-margin-x align-center align-middle">
+                    <div class="cell large-8 detail-vacante-ubicacion">
+                        <b>Empresa:</b><br>
+                        <a href="/company/{{vacante.empresa.id}}" target="_blank" >{{vacante.empresa.nombre}}</a>
+                        <br><br>
+
+                        <b>Ubicación: </b>
+                        <p>{{vacante.ubicacion.direccion}}</p>
+                    </div>
+                    <div class="cell large-4">
+                        <div id="map" class="border"></div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="detail-vacante-descripcion">
+                    <h4 style="text-align:left; ">Detalles del puesto:</h4><br>
+                    
+                    <div>
+                        <b>Descripción:</b>
+                        <p>{{vacante.descripcion}}</p>
+                    </div>
+                    <br>
+
+                    <div class="grid-x grid-margin-x " style="text-align:left;">
+                        <div class="cell large-7">
+                            <b>Funciones:</b>
+                            <ul>
+                                {% for funcion in funcion_list %}
+                                <li class="area-tag">{{funcion.funcion}}</li><br>
+                                {% endfor %}
+                            </ul>
+                            <br>
+                            <b>Prestaciones:</b>
+                            <ul>
+                                {% for prestacion in prestacion_list %}
+                                <li class="area-tag">{{prestacion.prestacion}}</li><br>
+                                {% endfor %}    
+                            </ul>
+                            <br>
+                        </div>
+                        <div class="cell large-5">
+                            <p><b>Área de puesto: </b><span class="area-tag">{{vacante.departamento.departamento}}</span></p>
+                            <p><b>Tipo de puesto: </b>{{vacante.tipo.tipo}}</p>
+                            <p><b>Remuneración: </b>{{vacante.remuneracion.minimo}} - {{vacante.remuneracion.maximo}} {{vacante.remuneracion.frecuencia}}</p>
+                            <br>
+                            <b>Frecuencia:</b>
+                            <ul>
+                                <li>Lunes: <span>{{vacante.frecuencia.lunes_entrada}} -{{vacante.frecuencia.lunes_salida}}</span></li>
+                                <li>Martes: <span>{{vacante.frecuencia.martes_entrada}} -{{vacante.frecuencia.martes_salida}}</span></li>
+                                <li>Miércoles: <span>{{vacante.frecuencia.miercoles_entrada}} -{{vacante.frecuencia.miercoles_salida}}</span></li>
+                                <li>Jueves: <span>{{vacante.frecuencia.jueves_entrada}} -{{vacante.frecuencia.jueves_salida}}</span></li>
+                                <li>Viernes: <span>{{vacante.frecuencia.viernes_entrada}} -{{vacante.frecuencia.viernes_salida}}</span></li>
+                                <li>Sábado: <span>{{vacante.frecuencia.sabado_entrada}} -{{vacante.frecuencia.sabado_salida}}</span></li>
+                                <li>Domingo: <span>{{vacante.frecuencia.domingo_entrada}} -{{vacante.frecuencia.domingo_salida}}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <h4 style="text-align:left; ">Requisitos del puesto:</h4><br>
+
+                    <div>
+                        <p><b>Edad requerida: </b>{{vacante.edad.edad}}</p>
+                        <p><b>Sexo: </b>
+                        {% if vacante.es_hombre == 1 %}
+                            Hombre.
+                        {% elif vacante.es_hombre == 0 %}
+                            Mujer.
+                        {% else %}
+                            Cualquiera.
+                        {% endif %}
+                        </p>
+                        <p><b>Experiencia mínima: </b>3 años.</p>
+                    </div>
+                    <br>
+
+                    
+                    <b>Educación:</b>
+                    <div>
+                        {% for educacion in educacion_list %}
+                        <div class="area-container user-educacion-color" style="text-align:center;">
+                            <p class="area-tag">{{educacion.area.area}}</p>
+                            <br><br>
+                            <p><b>Nivel: </b>{{educacion.nivel.nivel}}</p>
+                            <p><b>Caracter: </b>{{educacion.caracter.caracter}}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br>
+
+                    <b>Idiomas:</b>
+                    <div>
+                        {% for idioma in idioma_list %}
+                        <div class="area-container user-idioma-color">
+                            <p><b>Idioma: </b>{{idioma.idioma}}</p>
+                            <p><b>Nivel: </b>{{idioma.nivel}}</p>
+                            <p><b>Tipo: </b>{{idioma.caracter}}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br>
+                    
+
+                    <div class="grid-x grid-margin-x" style="text-align:left;">
+                        <div class="cell large-6">
+                            <b>Habilidades requeridas:</b>
+                            <ul>
+                                {% for habilidad in habilidad_list %}
+                                    {% if habilidad.caracter.id == 1 %}
+                                        <li class="area-tag">{{habilidad.habilidad}}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="cell large-6">
+                            <b>Habilidades deseadas:</b>
+                            <ul>
+                                {% for habilidad in habilidad_list %}
+                                    {% if habilidad.caracter.id == 2 %}
+                                        <li class="area-tag">{{habilidad.habilidad}}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="grid-x grid-margin-x" style="text-align:left;">
+                        <div class="cell large-6">
+                            <b>Competencias requeridas:</b>
+                            <ul>
+                                {% for competencia in competencia_list %}
+                                    {% if competencia.caracter.id == 1 %}
+                                        <li class="area-tag">{{competencia.competencia}}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="cell large-6">
+                            <b>Competencias deseadas:</b>
+                            <ul>
+                                {% for competencia in competencia_list %}
+                                    {% if competencia.caracter.id == 2 %}
+                                        <li class="area-tag">{{competencia.competencia}}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div>
+                        <h4 style="text-align:left; ">Información adicional:</h4>
+                        <p>{{vacante.informacion_adicional}}</p>
+                    </div>
+                    {% if request.session.user_type == "Usuario" %}
+                    <hr>
+                    <div class="submit-button-big">
+                        <input type="submit" class="button large expanded" value="Postularse">
+                        <small >Al finalizar el periodo de vida de la vacante, se le avisará si fue o no, elegido para el puesto.</small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,68 @@
+<html>
+   <head>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/app.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/foundation-icons.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/foundation.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/css/web.css' %}">
+        <title>FiredUp - {% block title %}Page Title{% endblock %}</title>
+   </head>
+	
+   <body>
+        <script src="{% static 'main/js/vendor/jquery.js' %}"></script>
+        <script src="{% static 'main/js/vendor/foundation.min.js' %}"></script>
+        <script src="{% static 'main/js/vendor/what-input.js' %}"></script>
+        <script src="{% static 'main/js/app.js' %}"></script>
+        
+        <!-- TOPBAR -->
+        <div class="topbar grid-x align-center">
+            <div class="cell small-2 medium-2 hide-for-large">
+                <i class="fi-list" style="font-size:30px;"></i>
+            </div>
+            <div class="cell large-2 small-6 medium-7">
+                <a href="/"><img src="{% static 'main/images/logo/logo.png' %}" class="logo"></a>
+            </div>
+            <div class="cell large-7 show-for-large" style="text-align: right;">
+                
+                {% if request.session.user_id %}
+                    {% if request.session.user_type == "Empresa" %}
+                        <a href="/vacante/crear"><b>Crear vacante</b></a>
+                    
+                    {% elif request.session.user_type == "Usuario" %}
+
+                    {% else %}
+                        <a href="#"><b>Buscar empleo</b></a>
+                        <a href="#"><b>Vacantes</b></a>
+                    {% endif %}
+                {% else %}
+                    
+                {% endif %}
+            </div>
+            {% if request.session.user_id %}
+                {% if request.session.user_type == "Empresa" %}
+                    <a href="/company/{{request.session.user_id}}"><b>{{request.session.user_name}}</b></a>
+                {% elif request.session.user_type == "Usuario" %}
+                    <a href="/user/{{request.session.user_id}}"><b>{{request.session.user_name}}</b></a>
+                {% endif %}
+            <a href="/cerrar-sesion"><i class="fi-power"></i></a>
+            {% else %}
+                <a href="/login"><b>Iniciar sesión</b></a>
+                <div class="cell large-1 small-4 medium-3" style="text-align: right;">
+                    <a class="button" href="/signup"><b>Registrarse</b></a>
+                </div>
+            {% endif %}
+        </div>
+        <br>   
+
+        <!-- CONTENT -->
+        {% block content %}
+        {% endblock %}
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <b>&copy; 2018 - FiredUp</b>
+        </div>
+
+        
+    </body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "main/main.html" %}
+{% block title %}Crear vacante{% endblock %}
+{% block content %}
+    <form class="grid-x align-center" action="/vacante/crear" method="POST">
+    {% csrf_token %}
+    
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h3>Crear vacante</h3>
+                <hr>
+                <h5>Información general</h5>
+                <hr>
+                {{vacante_form}}
+                <hr>
+                <h5>Remuneracion</h5>
+                <hr>
+                {{remuneracion_form}}
+                <hr>
+                <h5>Edad requerida</h5>
+                <hr>
+                {{edad_form}}
+                <hr><br>
+                <input type="submit" class="button expanded large" value="Crear vacante">
+            </div>
+        </div>
+    </form>
+    
+{% endblock %}

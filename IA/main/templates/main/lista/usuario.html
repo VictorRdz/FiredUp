@@ -1,0 +1,41 @@
+{% extends "main/main.html" %}
+{% block title %}Lista de usuarios{% endblock %}
+{% block content %}
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container no-bottom">
+                <h4>Lista de usuarios (Página {{usuario_list.number}})</h5>
+
+                {% for usuario in usuario_list %}
+                <hr>
+                <div class="grid-x grid-margin-x align-middle">
+                    <div class="cell large-1 medium-2">
+                        <p><b>ID: </b>{{usuario.id}}</p>
+                    </div>
+                    <div class="cell large-8 medium-10 user-list-text">
+                        <p><b>Nombre: </b>{{usuario.nombre}}</p>
+                        <p><b>Información: </b>{{usuario.quien_soy}}</p>
+                    </div>
+                    <div class="cell large-3">
+                        <br class="show-for-medium-only">
+                        <a href="/usuario/{{usuario.id}}" class="button expanded">Ver usuario</a>
+                    </div>
+                </div>
+                {% endfor %}
+                <hr>
+                <div class="grid-x grid-margin-x align-center">
+                    <div class="cell medium-4">
+                        {% if usuario_list.has_previous %}
+                            <a href="?pagina={{usuario_list.previous_page_number}}" class="button expanded">Página anterior</a>
+                        {% endif %}
+                    </div>
+                    <div class="cell medium-4">
+                        {% if usuario_list.has_next %}
+                            <a href="?pagina={{usuario_list.next_page_number}}" class="button expanded">Siguiente página</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

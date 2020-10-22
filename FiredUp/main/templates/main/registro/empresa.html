@@ -1,0 +1,89 @@
+{% extends "main/main.html" %}
+{% block title %}Crear empresa{% endblock %}
+{% block content %}
+
+    <div class="grid-x align-center align-middle">
+        <div class="cell large-10 small-11 white-container grid-x align-center">
+            <div class="cell large-11">
+                <h2>Crear perfil de empresa</h2>
+                <hr>
+                <form action="create" method="POST">
+                {% csrf_token %}
+                    <div>
+                        <h4 class="medium-title">Datos de inicio de sesión:</h4>
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-12">
+                                <label>*Correo electrónico:</label>
+                                <input type="text" placeholder="ejemplo@empresa.com" name="correo-electronico"/>
+                            </div>
+
+                            <div class="cell medium-6">
+                                <label>*Contraseña:</label>
+                                <input type="password" placeholder="***************" name="contrasena-uno">
+                            </div>
+                            <div class="cell medium-6">
+                                <label>*Confirmar contraseña:</label>
+                                <input type="password" placeholder="***************" name="contrasena-dos">
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <h4 class="medium-title">Datos generales:</h4>
+                    <div class="grid-x grid-margin-x">
+                        <div class="cell medium-12">
+                            <label>*Nombre de la empresa:</label>
+                            <input type="text" placeholder="Nombre a mostrar" name="nombre"/>
+                        </div>
+
+                        <div class="cell medium-6">
+                            <label>*País</label>
+                            <input id="empresa-pais-signup" type="text" placeholder="Nombre del país" name="pais"/>
+                            <input type="hidden" id="maps-name" name="name" />
+                            <input type="hidden" id="maps-address" name="address" />
+                            <input type="hidden" id="maps-lat" name="lat" />
+                            <input type="hidden" id="maps-lng" name="lng" />
+                        </div>
+                        <div class="cell medium-6">
+                            <label>*Tamaño de la empresa:</label>
+                            <select name="tamano">
+                            {% for tamaño in tamaño_list %}
+                                <option value="{{tamaño.id}}">{{tamaño.tamaño}}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="cell medium-6">
+                            <label>*Contacto:</label>
+                            <input type="text" placeholder="Correo, teléfono o cualquier otro" name="contacto">
+                        </div>
+                        <div class="cell medium-6">
+                            <label>*Sitio web:</label>
+                            <input type="text" placeholder="www.ejemplo.com" name="sitio-web">
+                        </div>
+                    </div>
+                    <hr>
+
+                    
+                    
+                    <div>
+                        <h4 class="medium-title">Información:</h4>
+                        <textarea maxlength="640" class="quien-soy-textarea" placeholder="Información general de la empresa. Máximo 640 caracteres." name="informacion"></textarea>
+                    </div>
+                    <hr>
+
+                    <div class="submit-button-big">
+                        <input type="submit" class="button large expanded" value="Crear perfil">
+                        <small >Al hacer clic en "Crear perfil" estás aceptando nuestros <a href="#">Términos y Condiciones</a>, así como nuestra <a href="#">Política de Privacidad.</a></small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% load static %}
+    <script src="{% static 'main/js/maps.js' %}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVFcwgdcm0b-rU3264mUfMrqn-9UFUDTE&libraries=places&callback=registroEmpresaAutocomplete"
+        type="text/javascript"></script>
+       
+{% endblock %}

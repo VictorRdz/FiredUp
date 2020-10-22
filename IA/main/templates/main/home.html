@@ -1,0 +1,38 @@
+{% extends "main/main.html" %}
+{% block title %}Crear usuario{% endblock %}
+{% block content %}
+    
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h3>Mapa general del sitio</h3>
+                <hr>
+                <div class="grid-x grid-margin-x">
+                    <div class="cell medium-4">
+                        <ul>
+                            <li><a href="/">Inicio</a></li><hr>
+                            <li><a href="/usuario">Lista de usuarios</a></li><hr>
+                            <li><a href="/vacante">Lista de vacantes</a></li><hr>
+                        </ul>
+                    </div>
+                    <div class="cell medium-4">
+                        <ul>
+                            <li><a href="/usuario/crear">Crear usuario</a></li><hr>
+                            <li><a href="/vacante/crear">Crear vacante</a></li><hr>
+                        </ul>
+                    </div>
+                    <div class="cell medium-4">
+                        <ul>
+                            <li><a href="/login">Iniciar sesión</a></li><hr>
+                            <li><a href="/salir">Cerrar sesión</a></li><hr>
+                            <li><a href="/ia">Cargar filtro IA</a></li><hr>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+{% endblock %}

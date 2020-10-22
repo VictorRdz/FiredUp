@@ -1,0 +1,47 @@
+<html>
+     <head>
+          {% load static %}
+          <link rel="stylesheet" type="text/css" href="{% static 'main/css/foundation.min.css' %}">
+          <link rel="stylesheet" type="text/css" href="{% static 'main/css/foundation-icons.css' %}">
+          <link rel="stylesheet" type="text/css" href="{% static 'main/css/app.css' %}">
+          <title>{% block title %}Page Title{% endblock %}</title>
+     </head>
+	
+     <body>
+          <script src="{% static 'main/js/vendor/jquery.js' %}"></script>
+          <script src="{% static 'main/js/vendor/foundation.min.js' %}"></script>
+          <script src="{% static 'main/js/vendor/what-input.js' %}"></script>
+          <script src="{% static 'main/js/app.js' %}"></script>
+          
+          <div class="topbar grid-x grid-margin-x align-middle">
+               <div class="cell large-2">
+                    <a href="/">Inicio</a>
+               </div>
+               <div class="cell large-4">
+                
+               </div>
+               <div class="cell large-2">
+                    <a href="/vacante">Vacantes</a>
+               </div>
+               <div class="cell large-2">
+                    {% if request.session.id is not None %}
+                         <a href="/usuario/{{request.session.id}}">Mi perfil</a>
+                    {% else %}
+                    <a href="/login">Iniciar sesión</a>
+                    {% endif %}
+               </div>
+               <div class="cell large-2">
+                    {% if request.session.id is None %}
+                         <a href="/usuario/crear">Crear cuenta</a>
+                    {% else %}
+                         <a href="/salir">Cerrar sesión</a>
+                    {% endif %}
+               </div>
+          </div>
+          <!-- CONTENT -->
+          {% block content %}
+          {% endblock %}
+          <br>
+          
+     </body>
+</html>

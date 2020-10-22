@@ -1,0 +1,45 @@
+body {
+    background-color: rgb(231, 233, 241);
+}
+
+h1, h2, h3, h4 {
+    text-align: center;
+}
+
+hr {
+    border-top: 1px solid #1779ba;
+    border-bottom: none;
+}
+
+.container {
+    border: 1px solid #1779ba;
+    border-radius: 5px;
+    padding: 2em;
+    background-color: white;
+    max-width: 1100px;
+    word-wrap: break-word;
+}
+
+.no-bottom {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.user-list-text {
+    
+
+}
+
+.topbar {
+    background-color: #1779ba;
+    height: 60px;
+    width: 100%;
+    margin-bottom: 2em;
+    color: white;
+    font-weight: 800;
+    text-align: center;
+}
+
+.topbar a {
+    color: white !important;
+}

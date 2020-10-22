@@ -1,0 +1,376 @@
+body {
+    background-color: rgb(243, 243, 243);
+}
+
+.topbar {
+    background-color: #181818;
+    color: white;
+    padding: 5px 0;
+    text-align: center;
+    align-items: center;
+    height: 70px;
+    z-index: 100;
+    border-bottom: 3px solid #252525;
+}
+
+.topbar a, .topbar a:active, .topbar a:visited {
+    color: #ffffff;
+    margin: 0 15px;
+}
+
+.topbar a:hover {
+    color: #ebebeb;
+}
+
+
+.white-container{
+    background-color: #ffffff;
+    border: 1px solid #dadada;
+    padding: 3em 1.5em;
+    max-width: 1400px;
+}
+
+h1, h2, h3, h4 {
+    text-align: center;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+
+
+.border {
+    border: 1px solid #cfcfcf;
+}
+
+
+.logo {
+    display: block;
+    height: 50px;
+}
+
+/* Small only */
+@media screen and (max-width: 39.9375em) {
+    #map {
+        height: 200px;
+        width: 100%;
+    }
+
+    .topbar {
+        height: 65px;
+    }
+
+    .detail-vacante-ubicacion {
+        text-align: center;
+    }
+
+    .user-image {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+/* Medium only */
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    #map {
+        height: 300px;
+        width: 100%;
+    }
+
+    .detail-vacante-ubicacion {
+        text-align: center;
+    }
+
+    .user-image {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+    #map {
+        padding-top: 100%;
+        width: 100%;
+    }
+}
+
+.vacante {
+    border-top: 1px solid #dadada;
+    min-height: 150px;
+    box-sizing: border-box;
+    padding: 1em;
+    color: rgb(83, 83, 83);
+}
+
+.vacante:hover {
+    background-color: #f7f7f7;
+}
+
+.vacante:active {
+    background-color: #ebebeb;
+}
+
+.vacante-info {
+    padding: 0 0.7em;
+}
+
+.vacante-remuneracion {
+    color: #015313;
+}
+
+.vacante-titulo {
+    color: #1779ba;
+    text-decoration: underline;
+}
+
+.vacante-empresa {
+    color: #659ec4;
+}
+
+.vacante-descripcion {
+    font-size: 0.8em;
+    text-align: justify;
+}
+
+.vacante-null {
+    border-top: 1px solid #dadada;
+    text-align: center;
+    color: rgb(117, 117, 117);
+    padding: 15em 0;
+    box-sizing: border-box;
+}
+
+
+.detail-vacante-container {
+    padding: 2em;
+    box-sizing: border-box;
+}
+
+.detail-vacante-ubicacion {
+    text-align: left;
+}
+
+.detail-vacante-descripcion {
+    text-align: justify;
+}
+
+.submit-button-big {
+    text-align: center;
+}
+
+.submit-button-big small {
+    font-size: 0.7em;
+    color: #929292;
+    text
+}
+
+.submit-button-big input {
+    margin: 0;
+}
+
+.user-descripcion {
+    color: #3b3b3b;
+}
+
+.user-image {
+    width: 230px;
+    height: 230px;
+    display: block;
+    border-radius: 8px;
+    margin-left: auto;
+}
+
+.user-informacion {
+    text-align: left;
+}
+
+.justified {
+    text-align: justify !important;
+}
+
+.area-container p {
+    margin: 0;
+}
+
+.area-container {
+    display: inline-block;
+    padding: 1em;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #d4d4d4; 
+    margin: 1em; 
+    text-align: left;
+    max-width: 400px;
+}
+
+.user-section {
+    text-align: center;
+}
+
+.user-educacion-color {
+    border: 1px solid #8bb7d4 !important; 
+    background-color: #eaf4ff !important;
+}
+
+.user-idioma-color {
+    border: 1px solid #d48b8b !important; 
+    background-color: #ffeaea !important;
+}
+
+.user-experiencia-color {
+    border: 1px solid #8bd48b !important; 
+    background-color: #ebffea !important;
+    text-align: justify !important;
+}
+
+.user-vacante-color {
+    border: 1px solid #8bd4a9 !important; 
+    background-color: #eafff6 !important;
+    text-align: justify !important;
+}
+
+
+.user-postulacion-espera-color {
+    border: 1px solid #c5c5c5 !important; 
+    background-color: #ececec !important;
+}
+
+.user-postulacion-aceptado-color {
+    border: 1px solid #8bd4a9 !important; 
+    background-color: #eafff6 !important;
+}
+
+.user-postulacion-denegado-color {
+    border: 1px solid #d48b8b !important; 
+    background-color: #ffeaea !important;
+}
+
+
+.area-tag, .tag-list li {
+    background-color: #98caec;
+    display: inline-block;
+    padding: 0 0.5em;
+    border-radius: 15px;
+    border: 1px solid #8bb7d4;
+    cursor: default;
+    margin: 0.1em !important;
+    text-align: center;
+    font-stretch: condensed;
+}
+
+.area-tag:hover {
+    background-color: #a0ceec;
+}
+
+.list-hidden {
+    display: none;
+}
+
+.center-button-div {
+    text-align:center;
+    width:100%
+}
+
+.footer {
+    width: 100%;
+    padding: 2em 0;
+    background-color: #181818;
+    color: rgb(241, 241, 241);
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+.star-on {
+    font-size: 3em;
+    margin: 0;
+    color: #f1e535;
+    text-shadow: 0 0 5px rgb(100, 100, 100);
+}
+
+.star-off {
+    font-size: 3em;
+    margin: 0;
+    color: #e4e4e4;
+    text-shadow: 0 0 5px rgb(100, 100, 100);
+}
+
+.verified {
+    color: #02ad27;
+    text-shadow: 0 0 2px #56ff7b;
+}
+
+.quien-soy-textarea {
+    height: 12em;
+}
+
+.delete-list-option {
+    color: #eb0000;
+    font-size: 1.3em;
+    vertical-align: middle;
+}
+
+.delete-list-option:hover {
+    color: #ff3131;
+    cursor: pointer;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.tag-list li {
+    display: inline-block;
+}
+
+.experiencia-textarea {
+    height: 6em;
+}
+
+.inline-center {
+    text-align: center;
+}
+
+.medium-title {
+    padding-bottom: 1em;
+    text-align:left;
+    font-weight: 800;
+}
+
+.hr-blue {
+    border-top: 6px solid #3b7eaa;
+    box-shadow: 0 0 5px #69bbf1;
+    border-radius: 10px;
+}
+
+label {
+    font-weight: 600;
+}
+
+.list-container {
+    border-top: 1px solid #dadada;
+    min-height: 150px;
+    box-sizing: border-box;
+    padding: 1em;
+    color: rgb(83, 83, 83);
+}
+
+.user-image-small {
+    width: 130px;
+    height: 130px;
+    display: block;
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.desc {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+}

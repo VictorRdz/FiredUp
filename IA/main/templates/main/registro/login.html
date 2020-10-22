@@ -1,0 +1,21 @@
+{% extends "main/main.html" %}
+{% block title %}Crear usuario{% endblock %}
+{% block content %}
+    <form class="grid-x align-center" action="/login" method="POST">
+    {% csrf_token %}
+    
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h3>Iniciar sesión</h3>
+                <hr>
+                <label>Correo electrónico:</label>
+                <input type="text" placeholder="usuario@ejemplo.com" name="correo-electronico">
+                <label>Contraseña:</label>
+                <input type="password" placeholder="*************" name="contraseña">
+                <hr><br>
+                <input type="submit" class="button expanded large" value="Iniciar sesión">
+            </div>
+        </div>
+    </form>
+    
+{% endblock %}

@@ -1,0 +1,33 @@
+from django.contrib import admin
+from .models import *
+
+# Register your models here.
+
+admin.site.register(Ubicacion)
+admin.site.register(Idioma)
+admin.site.register(Idioma_Nivel)
+admin.site.register(Area_Educativa)
+admin.site.register(Nivel_Educativo)
+admin.site.register(Tamaño_Empresa)
+admin.site.register(Estado_Civil)
+admin.site.register(Usuario)
+admin.site.register(Empresa)
+admin.site.register(Educacion_Usuario)
+admin.site.register(Habilidad_Usuario)
+admin.site.register(Competencia_Usuario)
+admin.site.register(Idioma_Usuario)
+admin.site.register(Experiencia_Usuario)
+admin.site.register(Departamento)
+admin.site.register(Tipo)
+admin.site.register(Vacante)
+admin.site.register(Edad_Vacante)
+admin.site.register(Educacion_Vacante)
+admin.site.register(Habilidad_Vacante)
+admin.site.register(Competencia_Vacante)
+admin.site.register(Idioma_Vacante)
+admin.site.register(Funcion_Vacante)
+admin.site.register(Prestacion_Vacante)
+admin.site.register(Frecuencia_Vacante)
+admin.site.register(Remuneracion_Vacante)
+admin.site.register(Frecuencia_Remuneracion)
+admin.site.register(Caracter)

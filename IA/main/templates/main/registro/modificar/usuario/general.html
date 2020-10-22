@@ -1,0 +1,20 @@
+{% extends "main/main.html" %}
+{% block title %}Modificar datos generales{% endblock %}
+{% block content %}
+    <form class="grid-x align-center" action="/usuario/{{request.session.id}}/modificar" method="POST">
+    {% csrf_token %}
+    
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h3>Modificar datos generales</h3>
+                <hr class="black-hr">
+                {{usuario_form}}
+                <hr><br>
+                <input type="submit" class="button expanded" value="Guardar">
+                <br><br><hr>
+                <a href="/usuario/{{request.session.id}}/eliminar" class="button expanded alert">Eliminar cuenta</a>
+            </div>
+        </div>
+    </form>
+    
+{% endblock %}

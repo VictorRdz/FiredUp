@@ -1,0 +1,145 @@
+{% extends "main/main.html" %}
+{% block title %}Detalles de usuario{% endblock %}
+{% block content %}
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h4>Datos generales</h5>
+                <hr>
+                <div class="grid-x grid-margin-x">
+                    <div class="cell large-4">
+                        <b>Nombre: </b>
+                        <p>{{usuario.nombre}}</p>
+                        <b>Edad: </b>
+                        <p>{{usuario.edad}} <small>({{usuario.fecha_de_nacimiento}})</small></p>
+                        <b>Sexo: </b>
+                        <p>{{usuario.sexo}}</p>
+                        <b>Años de experiencia: </b>
+                        <p>{{usuario.años_de_experiencia}}</p>
+                    </div>
+                    <div class="cell large-8">
+                        <b>¿Quién soy?: </b>
+                        <p>{{usuario.quien_soy}}</p>
+                        <hr>
+                        <b>Información adicional: </b>
+                        <p>{{usuario.informacion_adicional}}</p>
+                    </div>
+                </div>
+                {% if request.session.id == usuario.id %}
+                <hr><br>
+                <a href="/usuario/{{request.session.id}}/modificar" class="button expanded">Modificar datos</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <br>
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h4>Educación</h5>
+                {% for educacion in usuario.educacion_usuario_set.all %}
+                <hr>
+                <div class="grid-x grid-margin-x align-middle">
+                    <div class="cell medium-4 large-5">
+                        <b>Título: </b>
+                        <p>{{educacion.titulo}}</p>
+                        <b>Institución: </b>
+                        <p>{{educacion.institucion}}</p>
+                    </div>
+                    <div class="cell medium-4 large-4">
+                        <b>Nivel: </b>
+                        <p>{{educacion.nivel}}</p>
+                        <b>Área: </b>
+                        <p>{{educacion.area}}</p>
+                    </div>
+                    {% if request.session.id == usuario.id %}
+                    <div class="cell medium-4 large-3">
+                        <a href="/usuario/{{request.session.id}}/educacion/{{educacion.id}}" class="button expanded small">Modificar</a>
+                        <a href="/usuario/{{request.session.id}}/educacion/{{educacion.id}}/eliminar" class="button expanded small alert">Eliminar</a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% if request.session.id == usuario.id %}
+                <hr><br>
+                <a href="/usuario/{{request.session.id}}/educacion/crear" class="button expanded">Agregar educacion</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <div class="grid-x grid-margin-x">
+                    <div class="cell medium-6">
+                        <h4>Habilidades</h5>
+                        <hr>
+                        <ul>
+                        {% for habilidad in usuario.habilidad_usuario_set.all %}
+                            <li>{{habilidad.habilidad}}
+                            {% if request.session.id == usuario.id %}
+                            <a href="/usuario/{{request.session.id}}/habilidad/{{habilidad.id}}/eliminar">
+                            <small> Eliminar</small></a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        {% if request.session.id == usuario.id %}
+                        <hr><br>
+                        <a href="/usuario/{{request.session.id}}/habilidad/crear" class="button expanded">Agregar</a>
+                        <a href="/usuario/{{request.session.id}}/habilidad/modificar" class="button expanded">Modificar</a>
+                        {% endif %}
+                    </div>
+                    <div class="cell medium-6">
+                        <h4>Competencias</h5>
+                        <hr>
+                        <ul>
+                        {% for competencia in usuario.competencia_usuario_set.all %}
+                            <li>{{competencia.competencia}}
+                            {% if request.session.id == usuario.id %}
+                            <a href="/usuario/{{request.session.id}}/competencia/{{competencia.id}}/eliminar">
+                            <small> Eliminar</small></a>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        {% if request.session.id == usuario.id %}
+                        <hr><br>
+                        <a href="/usuario/{{request.session.id}}/competencia/crear" class="button expanded">Agregar</a>
+                        <a href="/usuario/{{request.session.id}}/competencia/modificar" class="button expanded">Modificar</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h4>Idiomas</h5>
+                {% for idioma in usuario.idioma_usuario_set.all %}
+                <hr>
+                <div class="grid-x grid-margin-x align-middle">
+                    <div class="cell medium-8 large-9">
+                        <b>Idioma {{forloop.counter}}: </b>
+                        <p>{{idioma.idioma}}</p>
+                    </div>
+                    {% if request.session.id == usuario.id %}
+                    <div class="cell medium-4 large-3">
+                        <a href="/usuario/{{request.session.id}}/idioma/{{idioma.id}}" class="button expanded small">Modificar</a>
+                        <a href="/usuario/{{request.session.id}}/idioma/{{idioma.id}}/eliminar" class="button expanded small alert">Eliminar</a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                {% if request.session.id == usuario.id %}
+                <hr><br>
+                <a href="/usuario/{{request.session.id}}/idioma/crear" class="button expanded">Agregar idioma</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "main/main.html" %}
+{% block title %}Modificar educacion{% endblock %}
+{% block content %}
+    <form class="grid-x align-center" action="/vacante/{{vacante_id}}/educacion/{{educacion_id}}" method="POST">
+    {% csrf_token %}
+    
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h3>Modificar educacion</h3>
+                <hr class="black-hr">
+                {{educacion_form}}
+                <hr><br>
+                <div class="grid-x grid-margin-x">
+                    <div class="cell large-6">
+                        <input type="submit" class="button expanded" value="Guardar">
+                    </div>
+                    <div class="cell large-6">
+                        <a href="{{educacion_id}}/eliminar" class="button expanded alert">Eliminar</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </form>
+    
+{% endblock %}

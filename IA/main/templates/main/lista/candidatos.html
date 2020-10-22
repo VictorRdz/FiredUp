@@ -1,0 +1,49 @@
+{% extends "main/main.html" %}
+{% block title %}Lista de candidatos{% endblock %}
+{% block content %}
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container no-bottom">
+                <h4>Lista de candidatos (Página {{candidatos.number}})</h5>
+
+                {% for candidato in candidatos %}
+                <hr>
+                <div class="grid-x grid-margin-x align-middle">
+                    <div class="cell medium-4">
+                        <span><b>Categoría: </b>{{candidato.categoria}}</span><hr>
+                        <span><b>ID: </b>{{candidato.usuario.id}}</span><br>
+                        <span><b>Habilidad: </b>{{candidato.habilidad}}</span><br>
+                        <span><b>Competencia: </b>{{candidato.competencia}}</span><br>
+                        <span><b>Idioma: </b>{{candidato.idioma}}</span><br>
+                        <span><b>Educacion: </b>{{candidato.educacion}}</span><br>
+                        <span><b>Experiencia: </b>{{candidato.experiencia|add:0}}</span><br>
+                        <span><b>Sexo: </b>{{candidato.sexo|add:0}}</span><br>
+                        <span><b>Edad: </b>{{candidato.edad|add:0}}</span>
+                    </div>
+                    <div class="cell large-5 medium-8 user-list-text">
+                        <p><b>Nombre: </b>{{candidato.usuario.nombre}}</p>
+                        <p><b>Información: </b>{{candidato.usuario.quien_soy}}</p>
+                    </div>
+                    <div class="cell large-3">
+                        <br class="show-for-medium-only">
+                        <a href="/usuario/{{candidato.usuario.id}}" class="button expanded">Ver usuario</a>
+                    </div>
+                </div>
+                {% endfor %}
+                <hr>
+                <div class="grid-x grid-margin-x align-center">
+                    <div class="cell medium-4">
+                        {% if candidatos.has_previous %}
+                            <a href="?pagina={{candidatos.previous_page_number}}" class="button expanded">Página anterior</a>
+                        {% endif %}
+                    </div>
+                    <div class="cell medium-4">
+                        {% if candidatos.has_next %}
+                            <a href="?pagina={{candidatos.next_page_number}}" class="button expanded">Siguiente página</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

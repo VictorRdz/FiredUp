@@ -1,0 +1,143 @@
+{% extends "main/main.html" %}
+{% block title %}Detalles de la vacante{% endblock %}
+{% block content %}
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h4>Información general</h5>
+                <hr>
+                <div class="grid-x grid-margin-x">
+                    <div class="cell large-4">
+                        <b>Puesto: </b>
+                        <p>{{vacante.puesto}}</p>
+                        <b>Tipo: </b>
+                        <p>{{vacante.tipo}}</p>
+                        <b>Departamento: </b>
+                        <p>{{vacante.departamento}}</p>
+                        <b>Remuneriación: </b>
+                        <p>{{vacante.remuneracion_set.get}}</p>
+                        <b>Frecuencia: </b>
+                        <p>{{vacante.frecuencia}}</p>
+                    </div>
+                    <div class="cell large-4">
+                        <b>Sexo: </b>
+                        <p>{{vacante.sexo}}</p>
+                        <b>Edad: </b>
+                        <p>{{vacante.edad_set.get}}</p>
+                        <b>Años de experiencia minimos: </b>
+                        <p>{{vacante.años_de_experiencia_minima}} años</p>
+                        <hr>
+                        <b>Lista de candidatos:</b>
+                        <a href="{{vacante.id}}/candidatos" class="button expanded">Ver candidatos</a>
+                    </div>
+                    <div class="cell large-4">
+                        <b>Descripción: </b>
+                        <p>{{vacante.descripcion}}</p>
+                        <b>Información adicional: </b>
+                        <p>{{vacante.informacion_adicional}}</p>
+                    </div>
+                </div>
+                <hr><br>
+                <a href="/vacante/{{vacante.id}}/modificar" class="button expanded">Modificar datos</a>
+            </div>
+        </div>
+    </div>
+    
+    <br>
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h4>Educación</h5>
+                {% for educacion in vacante.educacion_vacante_set.all %}
+                <hr>
+                <div class="grid-x grid-margin-x align-middle">
+                    <div class="cell medium-8 large-8">
+                        <b>Nivel: </b>
+                        <p>{{educacion.nivel}}</p>
+                        <b>Área: </b>
+                        <p>{{educacion.area}}</p>
+                    </div>
+                    <div class="cell medium-4 large-3">
+                        <a href="/vacante/{{vacante.id}}/educacion/{{educacion.id}}" class="button expanded small">Modificar</a>
+                        <a href="/vacante/{{vacante.id}}/educacion/{{educacion.id}}/eliminar" class="button expanded small alert">Eliminar</a>
+                    </div>
+                </div>
+                {% endfor %}
+                <hr><br>
+                <a href="/vacante/{{vacante.id}}/educacion/crear" class="button expanded">Agregar educacion</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <div class="grid-x grid-margin-x">
+                    <div class="cell medium-6">
+                        <h4>Habilidades</h5>
+                        <hr>
+                        <ul>
+                        {% for habilidad in vacante.habilidad_vacante_set.all %}
+                            <li>{{habilidad.habilidad}}
+                            <a href="/vacante/{{vacante.id}}/habilidad/{{habilidad.id}}/eliminar">
+                            <small> Eliminar</small></a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        <hr><br>
+                        <a href="/vacante/{{vacante.id}}/habilidad/crear" class="button expanded">Agregar</a>
+                        <a href="/vacante/{{vacante.id}}/habilidad/modificar" class="button expanded">Modificar</a>
+                    </div>
+                    <div class="cell medium-6">
+                        <h4>Competencias</h5>
+                        <hr>
+                        <ul>
+                        {% for competencia in vacante.competencia_vacante_set.all %}
+                            <li>{{competencia.competencia}}
+                            <a href="/vacante/{{vacante.id}}/competencia/{{competencia.id}}/eliminar">
+                            <small> Eliminar</small></a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        <hr><br>
+                        <a href="/vacante/{{vacante.id}}/competencia/crear" class="button expanded">Agregar</a>
+                        <a href="/vacante/{{vacante.id}}/competencia/modificar" class="button expanded">Modificar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="container">
+                <h4>Idiomas</h5>
+                {% for idioma in vacante.idioma_vacante_set.all %}
+                <hr>
+                <div class="grid-x grid-margin-x align-middle">
+                    <div class="cell medium-8 large-9">
+                        <b>Idioma {{forloop.counter}}: </b>
+                        <p>{{idioma.idioma}}</p>
+                    </div>
+                    <div class="cell medium-4 large-3">
+                        <a href="/vacante/{{vacante.id}}/idioma/{{idioma.id}}" class="button expanded small">Modificar</a>
+                        <a href="/vacante/{{vacante.id}}/idioma/{{idioma.id}}/eliminar" class="button expanded small alert">Eliminar</a>
+                    </div>
+                </div>
+                {% endfor %}
+                <hr><br>
+                <a href="/vacante/{{vacante.id}}/idioma/crear" class="button expanded">Agregar idioma</a>
+            </div>
+        </div>
+    </div>
+    {% if request.session.id is not None %}
+    <br><br>
+    <div class="grid-x align-center">
+        <div class="cell medium-9 small-11">
+            <div class="">
+                <a href="{{vacante.id}}/postularse" class="button expanded large">Postularse</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
